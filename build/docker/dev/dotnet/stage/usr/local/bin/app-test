@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+set -e
+
+cd /dotnet/tests/Chaffinch.Core.UnitTests
+USER_ID=$(ls -l | grep Common | awk '{print $3}')
+su $USER_ID -c 'dotnet test -c Release'
+

@@ -1,0 +1,15 @@
+version: "2"
+
+services:
+
+  dotnet:
+    build: ./build/docker/dev/dotnet
+    container_name: chaffinch-core-dev-dotnet
+    environment:
+      - DEVENV=dev
+      - DOTNET_USE_POLLING_FILE_WATCHER=true  
+    ports:
+      - "48010:5000"
+    volumes:
+      - ./dotnet:/mnt/dotnet
+      - ${HOME}/.nuget:/home/user/.nuget
