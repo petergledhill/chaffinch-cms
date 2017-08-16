@@ -1,14 +1,14 @@
 using System;
 using Xunit;
 
-namespace Chaffinch.Core.UnitTests
+namespace Chaffinch.Core.Unit
 {
     public class UnitTest1
     {
         [Fact]
         public void Test1()
         {
-            Assert.Equal("BOB2",Class1.Test());            
+            Assert.Equal("BOB",Class1.Test());            
         }
     }
 }

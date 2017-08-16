@@ -6,7 +6,7 @@ namespace Chaffinch.Core
     {
         public static string Test()
         {
-            return "BOB3";
+            return "BOB";
         }
     }
 }
