@@ -8,5 +8,11 @@ namespace Chaffinch.Core
         {
             return "BOB";
         }
+
+
+        public class DocumentType
+        {
+
+        }
     }
 }

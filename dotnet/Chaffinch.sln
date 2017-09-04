@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chaffinch.Core", "src\Core\Core.csproj", "{BC76E7F7-E7AC-4E7C-8035-9C5940FA02AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "src\Core\Core.csproj", "{BC76E7F7-E7AC-4E7C-8035-9C5940FA02AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chaffinch.Core.Unit", "tests\Core.Unit\Core.Unit.csproj", "{CE1A11F8-FD82-4549-901D-E41BA0E32F04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Unit", "tests\Core.Unit\Core.Unit.csproj", "{CE1A11F8-FD82-4549-901D-E41BA0E32F04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF95F7A7-2697-42D1-B804-BCB87B7F2BA9}
 	EndGlobalSection
 EndGlobal
