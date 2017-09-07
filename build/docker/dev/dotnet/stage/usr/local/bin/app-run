@@ -15,5 +15,6 @@ cd /dotnet
 dotnet restore
 
 # migrate and watch app for changes
-cd tests/Core.Unit
-dotnet watch test -c Debug
+cd src/Api
+dotnet watch run -c Debug
+

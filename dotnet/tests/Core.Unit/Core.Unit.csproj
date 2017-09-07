@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
+    <None Include="EventSourceHelper.cs" />
 
     <ProjectReference Include="..\..\src\Core\Core.csproj" />
   </ItemGroup>

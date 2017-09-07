@@ -16,41 +16,53 @@ using Xunit;
 
 namespace Chaffinch.Core.Unit.WriteModel
 {
-    public class WhenDocumentTypeCreatedTests : Specification<DocumentType, DocumentTypeCommandHandlers, CreateDocumentType>
+    public class WhenDocumentTypeCreatedTests 
     {
-        private Guid _guid;
-        protected override DocumentTypeCommandHandlers BuildHandler()
-        {
-            return new DocumentTypeCommandHandlers(Session);
-        }
+        private readonly Guid _guid;
+        private readonly EventSourceHelper _helper;
 
-        protected override IEnumerable<IEvent> Given()
+        public WhenDocumentTypeCreatedTests()
         {
             _guid = Guid.NewGuid();
-            return new List<IEvent> { };
+
+            _helper = new EventSourceHelper(new List<IEvent>());
+
+            var command = new CreateDocumentType(_guid, "a new document type");
+
+            var handlers = new DocumentTypeCommandHandlers(_helper.Session);
+            handlers.Handle(command);
         }
 
-        protected override CreateDocumentType When()
+     
+        [Fact]
+        public void DocumentType_can_be_got_from_session()
         {
-            return new CreateDocumentType(_guid, "a new document type");
+
+            _helper.Session.Get<DocumentType>(Guid.Empty);
         }
 
         [Fact]
         public void Should_create_one_event()
         {
-            Assert.Equal(1, PublishedEvents.Count);
+            Assert.Equal(1, _helper.PublishedEvents.Count);
         }
 
         [Fact]
         public void Should_create_correct_event()
         {
-            Assert.IsType<DocumentTypeCreated>(PublishedEvents.First());
+            Assert.IsType<DocumentTypeCreated>(_helper.PublishedEvents.First());
         }
        
         [Fact]
         public void Should_save_have_correct_name()
         {
-            Assert.Equal("a new document type", ((DocumentTypeCreated)PublishedEvents.First()).Name);
+            Assert.Equal("a new document type", ((DocumentTypeCreated)_helper.PublishedEvents.First()).Name);
+        }
+
+        [Fact]
+        public void Should_save_the_correct_id()
+        {
+            Assert.Equal(_guid, ((DocumentTypeCreated)_helper.PublishedEvents.First()).Id);
         }
     }
 }
