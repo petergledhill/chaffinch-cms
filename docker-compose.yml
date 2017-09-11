@@ -4,12 +4,22 @@ services:
 
   dotnet:
     build: ./build/docker/dev/dotnet
-    container_name: chaffinch-core-dev-dotnet
+    container_name: chaffinch-dev-dotnet
     environment:
       - DEVENV=dev
       - DOTNET_USE_POLLING_FILE_WATCHER=true  
+    links:
+      - db
     ports:
       - "48010:5000"
     volumes:
       - ./dotnet:/mnt/dotnet
       - ${HOME}/.nuget:/home/user/.nuget
+
+  db:
+    image: mysql:5.7.17
+    container_name: chaffinch-dev-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=test
+    ports:
+      - "48012:3306"  

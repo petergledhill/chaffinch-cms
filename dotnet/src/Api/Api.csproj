@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>Chaffinch.Api</AssemblyName>
+    <RootNamespace>Chaffinch.Api</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

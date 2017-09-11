@@ -3,4 +3,4 @@ cd $(dirname $0)
 
 set -e
 
-docker exec -it chaffinch-core-dev-dotnet app-test
+docker exec -it chaffinch-dev-dotnet app-test

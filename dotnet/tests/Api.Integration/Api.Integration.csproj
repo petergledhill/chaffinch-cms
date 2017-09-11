@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <AssemblyName>Chaffinch.Api.Integration</AssemblyName>
+
+    <RootNamespace>Chaffinch.Api.Integration</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-preview-20170628-02" />
+    <PackageReference Include="xunit.runner.console" Version="2.3.0-beta4-build3742" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0-beta4-build3742" />
+    <PackageReference Include="xunit" Version="2.3.0-beta4-build3742" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
+    
+    <ProjectReference Include="..\..\src\Api\Api.csproj" />
+  </ItemGroup>
+
+</Project>
