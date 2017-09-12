@@ -1,8 +1,8 @@
 echo off
 
 SET dotnet="C:/Program Files/dotnet/dotnet.exe"  
-SET opencover=C:\Users\peter\.nuget\packages\OpenCover\4.6.519\tools\OpenCover.Console.exe  
-SET reportgenerator=C:\Users\peter\.nuget\packages\ReportGenerator\2.5.6\tools\ReportGenerator.exe
+SET opencover=%UserProfile%\.nuget\packages\OpenCover\4.6.519\tools\OpenCover.Console.exe  
+SET reportgenerator=%UserProfile%\.nuget\packages\ReportGenerator\2.5.6\tools\ReportGenerator.exe
 
 SET targetargs="test"  
 SET filter="+[Chaffinch*]* -[*Unit*]* -[*Integration*]* -[xunit*]*"  
