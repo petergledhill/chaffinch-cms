@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using Chaffinch.Core.Events;
 using Chaffinch.Core.WriteModel.Domain;
 using Chaffinch.Core.WriteModel.Handlers;
-using CQRSlite.Bus;
 using CQRSlite.Events;
 using Xunit;
 

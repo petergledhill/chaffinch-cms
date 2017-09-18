@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using CQRSlite.Commands;
 using CQRSlite.Domain;
 using CQRSlite.Events;
-using CQRSlite.Snapshots;
+using CQRSlite.Snapshotting;
 
 namespace Chaffinch.Core.Unit
 {
