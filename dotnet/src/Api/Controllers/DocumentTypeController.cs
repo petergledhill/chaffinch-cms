@@ -9,7 +9,7 @@ namespace Chaffinch.Api.Controllers
 {
     [Route("api/[controller]")]
     public class DocumentTypeController : Controller
-    {
+    {    
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]CreateDocumentType value)
         {

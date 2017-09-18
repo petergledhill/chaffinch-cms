@@ -5,7 +5,7 @@ SET opencover=%UserProfile%\.nuget\packages\OpenCover\4.6.519\tools\OpenCover.Co
 SET reportgenerator=%UserProfile%\.nuget\packages\ReportGenerator\2.5.6\tools\ReportGenerator.exe
 
 SET targetargs="test"  
-SET filter="+[Chaffinch*]* -[*Unit*]* -[*Integration*]* -[xunit*]*"  
+SET filter="+[Chaffinch*]* -[*Unit*]* -[*Integration*]* -[*Functional*]*"  
 SET coveragefile=Coverage.xml  
 SET coveragedir=Coverage
 

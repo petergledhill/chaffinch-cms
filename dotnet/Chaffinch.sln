@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Integration", "tests\Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Unit", "tests\Api.Unit\Api.Unit.csproj", "{0D7803BF-D6C1-4A6F-BD0F-6CD9F596DF8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Functional", "tests\Api.Functional\Api.Functional.csproj", "{3ECCC40C-CD1F-499F-AB65-4B34D4A3D864}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{0D7803BF-D6C1-4A6F-BD0F-6CD9F596DF8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D7803BF-D6C1-4A6F-BD0F-6CD9F596DF8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D7803BF-D6C1-4A6F-BD0F-6CD9F596DF8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ECCC40C-CD1F-499F-AB65-4B34D4A3D864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ECCC40C-CD1F-499F-AB65-4B34D4A3D864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ECCC40C-CD1F-499F-AB65-4B34D4A3D864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ECCC40C-CD1F-499F-AB65-4B34D4A3D864}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
