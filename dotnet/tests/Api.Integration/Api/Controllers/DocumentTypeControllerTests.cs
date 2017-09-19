@@ -7,22 +7,66 @@ using Chaffinch.Api.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
+using Moq;
+using Chaffinch.Core.CQRS;
+using System.Threading;
+using Chaffinch.Core.WriteModel.Commands;
 
 namespace Chaffinch.Api.Integration.Api.Controllers
 {
-    public class DocumentTypeControllerTests
+    public class DocumentTypeControllerTests : IDisposable
     {
-        [Fact]
-        public async Task Should_return_success_with_valid_command()
+        DocumentTypeController _controller;
+        Mock<ICommandSender> _commandSender;
+
+        CreateDocumentTypeModel _goodPayload;
+
+        public DocumentTypeControllerTests()
         {
-            var controller = new DocumentTypeController();         
-            var newDocumentType = new CreateDocumentType
+            _commandSender = new Mock<ICommandSender>();
+            _controller = new DocumentTypeController(_commandSender.Object);
+
+            _goodPayload = new CreateDocumentTypeModel
             {
                 Name = "test"
             };
-            var result = await controller.Post(newDocumentType);
+        }
+
+        public void Dispose()
+        {
+            _commandSender = null;
+            _controller.Dispose();
+        }
+
+        [Fact]                
+        public async Task Create_should_return_success_with_valid_command()
+        {             
+            var result = await _controller.Post(_goodPayload);
             var response = Assert.IsType<OkResult>(result);
             Assert.Equal(StatusCodes.Status200OK, response.StatusCode);           
         }
+
+
+        [Fact]
+        public async Task Create_should_return_failure_with_invalid_command()
+        {
+            _controller.ModelState.AddModelError("error", "error");
+
+            var result = await _controller.Post(null);
+            var response = Assert.IsType<BadRequestObjectResult>(result);
+            Assert.Equal(StatusCodes.Status400BadRequest, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task Create_should_call_command_sender()
+        {          
+            var result = await _controller.Post(_goodPayload);
+
+            _commandSender.Verify(m => m.Send(
+                It.Is<CreateDocumentType>(p => p.Name == "test"), 
+                It.IsAny<CancellationToken>())
+            );
+        }
     }
+    
 }

@@ -10,7 +10,7 @@ namespace Chaffinch.Core.CQRS
     /// <summary>
     /// A wrapper for CQRSLites CommandSender, so as not require CQRSLite in other libraries
     /// </summary>
-    public class CommandSender 
+    public class CommandSender : ICommandSender
     {
         private readonly CQRSlite.Commands.ICommandSender _cqrsLiteCommandSender;
 

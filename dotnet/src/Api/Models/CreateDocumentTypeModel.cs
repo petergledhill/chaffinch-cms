@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chaffinch.Api.Models
 {
-    public class CreateDocumentType
+    public class CreateDocumentTypeModel
     {
         public string Name { get; set; }
     }

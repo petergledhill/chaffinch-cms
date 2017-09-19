@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Chaffinch.Api.Validators
 {
-    public class CreateDocumentTypeValidator : AbstractValidator<CreateDocumentType>
+    public class CreateDocumentTypeValidator : AbstractValidator<CreateDocumentTypeModel>
     {
         public CreateDocumentTypeValidator()
         {
