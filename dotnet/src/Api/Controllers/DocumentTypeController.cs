@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Chaffinch.Api.Models;
-using Chaffinch.Core.CQRS;
+using Chaffinch.CQRS.Commands;
 
 namespace Chaffinch.Api.Controllers
 {

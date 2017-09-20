@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Chaffinch.Api.Controllers;
+﻿using Chaffinch.Api.Controllers;
 using Chaffinch.Api.Models;
+using Chaffinch.Core.WriteModel.Commands;
+using Chaffinch.CQRS.Commands;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Xunit;
 using Moq;
-using Chaffinch.Core.CQRS;
+using System;
 using System.Threading;
-using Chaffinch.Core.WriteModel.Commands;
+using System.Threading.Tasks;
+using Xunit;
 
 namespace Chaffinch.Api.Integration.Api.Controllers
 {

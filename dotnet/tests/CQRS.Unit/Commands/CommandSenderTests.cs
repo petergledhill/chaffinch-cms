@@ -1,13 +1,10 @@
-﻿using Chaffinch.Core.CQRS;
+﻿using Chaffinch.CQRS.Commands;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Chaffinch.Core.Unit.CQRS
+namespace Chaffinch.CQRS.Unit.Commands
 {
     public class CommandSenderTests
     {

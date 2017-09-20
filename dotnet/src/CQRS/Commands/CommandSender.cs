@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Chaffinch.Core.CQRS
+namespace Chaffinch.CQRS.Commands
 {
     /// <summary>
     /// A wrapper for CQRSLites CommandSender, so as not require CQRSLite in other libraries

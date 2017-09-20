@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Chaffinch.Core.CQRS
+namespace Chaffinch.CQRS.Commands
 {
     public interface ICommandSender
     {
