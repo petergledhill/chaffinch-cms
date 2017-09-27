@@ -1,7 +1,7 @@
 ﻿using Chaffinch.Api.Controllers;
 using Chaffinch.Api.Models;
 using Chaffinch.Core.WriteModel.Commands;
-using Chaffinch.CQRS.Commands;
+using CQRSlite.Commands;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
