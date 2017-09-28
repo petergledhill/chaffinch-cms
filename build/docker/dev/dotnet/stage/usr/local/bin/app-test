@@ -10,3 +10,14 @@ cd /dotnet/tests/Api.Integration
 USER_ID=$(ls -l | grep Common | awk '{print $3}')
 su $USER_ID -c 'dotnet test -c Release'
 
+cd /dotnet/tests/Api.Functional
+USER_ID=$(ls -l | grep Common | awk '{print $3}')
+su $USER_ID -c 'dotnet test -c Release'
+
+cd /dotnet/tests/Api.Unit
+USER_ID=$(ls -l | grep Common | awk '{print $3}')
+su $USER_ID -c 'dotnet test -c Release'
+
+cd /dotnet/tests/CQRS.Unit
+USER_ID=$(ls -l | grep Common | awk '{print $3}')
+su $USER_ID -c 'dotnet test -c Release'
