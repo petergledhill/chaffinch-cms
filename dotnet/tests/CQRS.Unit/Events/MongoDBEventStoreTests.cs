@@ -26,7 +26,10 @@ namespace Chaffinch.CQRS.Unit.Events
             _publisher = new Mock<IEventPublisher>();
             _mongoDb = new Mock<IMongoDatabase>();
             _mongoCollection = new Mock<IMongoCollection<IEvent>>();
-                        
+
+            _mongoDb.Setup(db => db.GetCollection<IEvent>("events", null))
+                .Returns(_mongoCollection.Object);
+            
             _mongoDBEventStore = new MongoDBEventStore(_publisher.Object, _mongoDb.Object);
         }
 
@@ -57,8 +60,7 @@ namespace Chaffinch.CQRS.Unit.Events
         }
 
         /*
-         * I am unable to mock the mongo find extension methods so going to have to test get  
-         * with an integration test
+         * I am unable to mock the mongo find extension methods so going to have  
          * 
         [Fact]
         public async Task Get_querys_mongo_for_the_events_by_aggregrate_id()
