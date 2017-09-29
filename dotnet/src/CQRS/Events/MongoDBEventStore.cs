@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using System.Linq;
 using MongoDB;
 using MongoDB.Driver;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson;
+using MongoDB.Driver.Linq;
 
 namespace Chaffinch.CQRS.Events
 {
@@ -23,20 +26,22 @@ namespace Chaffinch.CQRS.Events
 
         public async Task<IEnumerable<IEvent>> Get(Guid aggregateId, int fromVersion, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var collection = _mongoDatabase.GetCollection<IEvent>("events", null);
-            
-            await collection.FindAsync(e => e.Id == aggregateId, null, cancellationToken);
+            var collection = _mongoDatabase.GetCollection<BaseEvent>("events", null);
 
-            return new List<IEvent>();
+            var events = await collection.AsQueryable().Where(u => u.Id == aggregateId && u.Version > fromVersion).ToListAsync();
+
+            return events;
         }
 
         public async Task Save(IEnumerable<IEvent> events, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var collection = _mongoDatabase.GetCollection<IEvent>("events");
-           
+            var collection = _mongoDatabase.GetCollection<BaseEvent>("events");
+
             foreach (var @event in events)
             {
-                await collection.InsertOneAsync(@event, null, cancellationToken);
+                if (!(@event is BaseEvent)) throw new InvalidCastException("Events must extend BaseEvent");
+
+                await collection.InsertOneAsync((BaseEvent)@event, null, cancellationToken);
                 await _eventPublisher.Publish(@event, cancellationToken);
             }
         }

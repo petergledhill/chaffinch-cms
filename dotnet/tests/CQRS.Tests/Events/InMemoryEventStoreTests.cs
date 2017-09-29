@@ -1,5 +1,4 @@
 ﻿using Chaffinch.CQRS.Events;
-using Chaffinch.CQRS.Unit.Mocks;
 using CQRSlite.Events;
 using Moq;
 using System;
@@ -9,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 using System.Linq;
+using Chaffinch.CQRS.Tests.Mocks;
 
 namespace Chaffinch.CQRS.Unit.Events
 {

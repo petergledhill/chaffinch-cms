@@ -5,14 +5,16 @@
 
     <IsPackable>false</IsPackable>
 
-    <AssemblyName>Chaffinch.CQRS.Unit</AssemblyName>
+    <AssemblyName>Chaffinch.CQRS.Tests</AssemblyName>
 
-    <RootNamespace>Chaffinch.CQRS.Unit</RootNamespace>
+    <RootNamespace>Chaffinch.CQRS.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="CqrsLite" Version="0.16.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0-preview-20170914-09" />
+    <PackageReference Include="Mongo2Go" Version="2.2.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
     <PackageReference Include="Moq" Version="4.7.99" />
     <PackageReference Include="xunit.runner.console" Version="2.3.0-beta5-build3769" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0-beta5-build3769" />
@@ -21,6 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
+    
     <ProjectReference Include="..\..\src\CQRS\CQRS.csproj" />
   </ItemGroup>
 

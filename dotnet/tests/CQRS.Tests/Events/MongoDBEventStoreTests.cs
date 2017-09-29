@@ -1,5 +1,5 @@
 ﻿using Chaffinch.CQRS.Events;
-using Chaffinch.CQRS.Unit.Mocks;
+using Chaffinch.CQRS.Tests.Mocks;
 using CQRSlite.Events;
 using MongoDB.Driver;
 using Moq;
@@ -17,7 +17,7 @@ namespace Chaffinch.CQRS.Unit.Events
     {
         private readonly Mock<IEventPublisher> _publisher;
         private readonly Mock<IMongoDatabase> _mongoDb;
-        private readonly Mock<IMongoCollection<IEvent>> _mongoCollection;
+        private readonly Mock<IMongoCollection<BaseEvent>> _mongoCollection;
 
         private readonly MongoDBEventStore _mongoDBEventStore;
 
@@ -25,9 +25,9 @@ namespace Chaffinch.CQRS.Unit.Events
         {
             _publisher = new Mock<IEventPublisher>();
             _mongoDb = new Mock<IMongoDatabase>();
-            _mongoCollection = new Mock<IMongoCollection<IEvent>>();
+            _mongoCollection = new Mock<IMongoCollection<BaseEvent>>();
 
-            _mongoDb.Setup(db => db.GetCollection<IEvent>("events", null))
+            _mongoDb.Setup(db => db.GetCollection<BaseEvent>("events", null))
                 .Returns(_mongoCollection.Object);
             
             _mongoDBEventStore = new MongoDBEventStore(_publisher.Object, _mongoDb.Object);
@@ -58,24 +58,13 @@ namespace Chaffinch.CQRS.Unit.Events
             _mongoCollection.Verify(c => c.InsertOneAsync(event1, null, cancellationToken));
             _mongoCollection.Verify(c => c.InsertOneAsync(event2, null, cancellationToken));
         }
-
-        /*
-         * I am unable to mock the mongo find extension methods so going to have  
-         * 
+        
         [Fact]
-        public async Task Get_querys_mongo_for_the_events_by_aggregrate_id()
+        public async Task Save_requires_event_to_be_base_event()
         {
-            var aggregateId = Guid.NewGuid();        
-            var cancellationToken = default(CancellationToken);
-            Expression<Func<IEvent, bool>> findById = e => e.Id == aggregateId;
-            var eventCursor = new Mock<IAsyncCursor<IEvent>>();
-            
-            _mongoCollection.Setup(c => c.FindAsync(findById, null, cancellationToken))
-                .ReturnsAsync(eventCursor.Object);
-            
-            await _mongoDBEventStore.Get(aggregateId, 0, cancellationToken);
-            
-            _mongoCollection.Verify(c => c.FindAsync<IEvent>(findById, null, cancellationToken));            
-        }*/
+            var simpleEvent = new EventWithoutBaseEvent { Id = Guid.NewGuid() };
+
+            await Assert.ThrowsAsync<InvalidCastException>(async () => await _mongoDBEventStore.Save(new List<IEvent> { simpleEvent }));                        
+        }      
     }
 }
