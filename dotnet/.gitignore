@@ -112,7 +112,7 @@ _TeamCity*
 
 # OpenCover
 Coverage.xml
-Coverage
+_coverage
 
 # NCrunch
 _NCrunch_*
