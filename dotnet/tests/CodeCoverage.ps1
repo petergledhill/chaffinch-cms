@@ -1,3 +1,5 @@
+param([string]$projects="")
+
 $dotnet="C:/Program Files/dotnet/dotnet.exe"
 $opencover="$ENV:UserProfile\.nuget\packages\OpenCover\4.6.519\tools\OpenCover.Console.exe"
 $reportgenerator="$ENV:UserProfile\.nuget\packages\ReportGenerator\2.5.6\tools\ReportGenerator.exe"
@@ -33,8 +35,24 @@ function OpenReport{
     Invoke-Expression $command
 }
 
+function DiscoverTestFolders{
+    return (Get-ChildItem -Path . -Directory -Exclude $coveragedir).Name
+}
+function FindTargetProjects {
+    IF([string]::IsNullOrEmpty($projects)){
+       return DiscoverTestFolders
+    }
+    else{
+        return $projects.Split(" ")
+    }
+}
+
+$targetProjects = FindTargetProjects
+
+Write-Output "Covering : $targetProjects"
+
 CleanUp
-ForEach ($folder in (Get-ChildItem -Path . -Directory)) {   
+ForEach ($folder in ($targetProjects)) {   
     RunOpenCover($folder)
 }
 GenerateReport
